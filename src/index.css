@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #0072CE;
+  --secondary: #33A1FD;
+  --yellow-tail: #FFC61E;
+  --blue-tail: #0052CC;
+  --success: #36B37E;
+  --warning: #FFAB00;
+  --error: #FF5630;
+}
+
+body {
+  @apply font-sans text-gray-800 bg-gray-50 dark:bg-gray-900 dark:text-gray-100;
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-heading;
+}
+
+.container {
+  @apply mx-auto px-4 w-full max-w-7xl;
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+  
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary/90 focus:ring-primary/50;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-200 text-gray-800 hover:bg-gray-300 focus:ring-gray-200/50 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600;
+  }
+  
+  .btn-outline {
+    @apply border border-gray-300 hover:bg-gray-100 focus:ring-gray-200/50 dark:border-gray-600 dark:hover:bg-gray-800;
+  }
+  
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6;
+  }
+}
