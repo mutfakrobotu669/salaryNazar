@@ -1,7 +1,15 @@
 import { useCalculator } from '../../contexts/CalculatorContext';
+import { motion } from 'framer-motion';
 
 const PositionSelector = () => {
   const { position, setPosition, nextStep, previousStep } = useCalculator();
+  
+  // Handle position selection with auto-proceed
+  const handlePositionSelect = (selectedPosition: 'firstOfficer' | 'captain') => {
+    setPosition(selectedPosition);
+    // Short delay before proceeding to next step for better UX
+    setTimeout(() => nextStep(), 300);
+  };
   
   return (
     <div className="space-y-6">
@@ -11,7 +19,7 @@ const PositionSelector = () => {
         {/* First Officer */}
         <button
           type="button"
-          onClick={() => setPosition('firstOfficer')}
+          onClick={() => handlePositionSelect('firstOfficer')}
           className={`
             p-6 rounded-lg border-2 transition-all
             flex flex-col items-center
@@ -32,7 +40,7 @@ const PositionSelector = () => {
         {/* Captain */}
         <button
           type="button"
-          onClick={() => setPosition('captain')}
+          onClick={() => handlePositionSelect('captain')}
           className={`
             p-6 rounded-lg border-2 transition-all
             flex flex-col items-center
@@ -51,7 +59,7 @@ const PositionSelector = () => {
         </button>
       </div>
       
-      <div className="flex justify-between mt-8">
+      <div className="flex justify-start mt-8">
         <button
           type="button" 
           onClick={previousStep}
@@ -60,14 +68,9 @@ const PositionSelector = () => {
           Back
         </button>
         
-        <button
-          type="button" 
-          onClick={nextStep}
-          disabled={!position}
-          className="btn btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          Continue
-        </button>
+        <div className="flex-grow text-center text-sm text-gray-500 dark:text-gray-400 self-center">
+          Select a position to continue
+        </div>
       </div>
     </div>
   );

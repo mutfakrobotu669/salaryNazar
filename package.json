@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@capacitor/cli": "^7.1.0",
+    "@capacitor/core": "^7.1.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@headlessui/react": "^1.7.18",
@@ -21,6 +23,7 @@
     "html2canvas": "^1.4.1",
     "i18next": "^23.7.16",
     "jspdf": "^2.5.2",
+    "openai": "^4.90.0",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
@@ -43,6 +46,7 @@
     "postcss": "^8.4.32",
     "tailwindcss": "^3.4.0",
     "typescript": "^5.2.2",
-    "vite": "^5.0.8"
+    "vite": "^5.0.8",
+    "vite-plugin-pwa": "^0.21.2"
   }
 }

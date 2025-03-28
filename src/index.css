@@ -17,6 +17,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  overflow-x: hidden; /* Prevent horizontal scrolling on mobile */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -25,6 +26,47 @@ h1, h2, h3, h4, h5, h6 {
 
 .container {
   @apply mx-auto px-4 w-full max-w-7xl;
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  h1 { @apply text-2xl !important; }
+  h2 { @apply text-xl !important; }
+  h3 { @apply text-lg !important; }
+  .mobile-text-sm { @apply text-sm !important; }
+  .mobile-px-2 { @apply px-2 !important; }
+  .mobile-py-3 { @apply py-3 !important; }
+  
+  /* Fix for results layout */
+  .results-container {
+    @apply px-2 max-w-full overflow-x-hidden;
+  }
+  
+  /* Fix for calculation modal */
+  .calculation-modal {
+    @apply fixed inset-0 z-50 flex items-center justify-center;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .calculation-modal-content {
+    @apply bg-white dark:bg-gray-800 rounded-lg p-4 max-h-[90vh] overflow-y-auto w-[90vw] max-w-md mx-auto;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Make charts responsive */
+  .responsive-chart {
+    @apply w-full max-w-full overflow-hidden;
+    height: auto !important;
+  }
+  
+  /* Better summary cards on mobile */
+  .summary-card {
+    @apply p-3;
+  }
+  
+  .summary-card .text-2xl {
+    @apply text-xl;
+  }
 }
 
 @layer components {

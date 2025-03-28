@@ -1,7 +1,15 @@
 import { useCalculator } from '../../contexts/CalculatorContext';
+import { motion } from 'framer-motion';
 
 const AirlineSelector = () => {
   const { airline, setAirline, nextStep } = useCalculator();
+  
+  // Handle airline selection with auto-proceed
+  const handleAirlineSelect = (selectedAirline: 'yellow' | 'blue') => {
+    setAirline(selectedAirline);
+    // Short delay before proceeding to next step for better UX
+    setTimeout(() => nextStep(), 300);
+  };
   
   return (
     <div className="space-y-6">
@@ -11,7 +19,7 @@ const AirlineSelector = () => {
         {/* Yellow Tail Option */}
         <button
           type="button"
-          onClick={() => setAirline('yellow')}
+          onClick={() => handleAirlineSelect('yellow')}
           className={`
             p-6 rounded-lg border-2 transition-all
             flex flex-col items-center
@@ -32,7 +40,7 @@ const AirlineSelector = () => {
         {/* Blue Tail Option */}
         <button
           type="button"
-          onClick={() => setAirline('blue')}
+          onClick={() => handleAirlineSelect('blue')}
           className={`
             p-6 rounded-lg border-2 transition-all
             flex flex-col items-center
@@ -51,15 +59,8 @@ const AirlineSelector = () => {
         </button>
       </div>
       
-      <div className="flex justify-center mt-8">
-        <button
-          type="button" 
-          onClick={nextStep}
-          disabled={!airline}
-          className="btn btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          Continue
-        </button>
+      <div className="text-center mt-8 text-sm text-gray-500 dark:text-gray-400">
+        Select an airline to continue
       </div>
     </div>
   );

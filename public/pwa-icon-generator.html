@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PWA Icon Generator for Pilot Salary Calculator</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; }
+    canvas { border: 1px solid #ccc; margin: 10px 0; }
+    .button { background: #0066cc; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; }
+    .preview { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
+    .icon-preview { text-align: center; }
+  </style>
+</head>
+<body>
+  <h1>PWA Icon Generator for Pilot Salary Calculator</h1>
+  <p>This tool generates the PWA icons needed for your iOS mobile app version.</p>
+  
+  <div>
+    <h2>Generate Icons</h2>
+    <p>Select background color: <input type="color" id="bgColor" value="#0066cc"></p>
+    <p>Select text color: <input type="color" id="textColor" value="#ffffff"></p>
+    <button class="button" onclick="generateIcons()">Generate Icons</button>
+  </div>
+  
+  <div class="preview" id="preview"></div>
+  
+  <script>
+    function generateIcons() {
+      const sizes = [192, 512];
+      const bgColor = document.getElementById('bgColor').value;
+      const textColor = document.getElementById('textColor').value;
+      const preview = document.getElementById('preview');
+      preview.innerHTML = '';
+      
+      sizes.forEach(size => {
+        const canvas = document.createElement('canvas');
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext('2d');
+        
+        // Background
+        ctx.fillStyle = bgColor;
+        ctx.fillRect(0, 0, size, size);
+        
+        // Text
+        ctx.fillStyle = textColor;
+        ctx.font = `bold ${size/4}px Arial`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('PC', size/2, size/2);
+        
+        // Add to preview
+        const container = document.createElement('div');
+        container.className = 'icon-preview';
+        
+        container.appendChild(canvas);
+        
+        const label = document.createElement('p');
+        label.textContent = `${size}x${size}`;
+        container.appendChild(label);
+        
+        const downloadLink = document.createElement('a');
+        downloadLink.textContent = 'Download';
+        downloadLink.href = canvas.toDataURL('image/png');
+        downloadLink.download = `pwa-${size}x${size}.png`;
+        downloadLink.className = 'button';
+        container.appendChild(downloadLink);
+        
+        preview.appendChild(container);
+      });
+    }
+    
+    // Generate icons on page load
+    window.onload = generateIcons;
+  </script>
+</body>
+</html>

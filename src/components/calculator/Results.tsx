@@ -136,7 +136,7 @@ const Results = () => {
       </ErrorBoundary>
       
       <motion.div 
-        className="space-y-6"
+        className="space-y-6 results-container"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
@@ -186,11 +186,11 @@ const Results = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.5 }}
-          className="rounded-xl bg-gradient-to-r from-blue-600 to-indigo-700 dark:from-blue-800 dark:to-indigo-900 text-white p-6 shadow-lg"
+          className="rounded-xl bg-gradient-to-r from-blue-600 to-indigo-700 dark:from-blue-800 dark:to-indigo-900 text-white p-6 mobile-px-2 mobile-py-3 shadow-lg"
         >
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-2 md:gap-4">
             <div>
-              <h1 className="text-3xl font-bold mb-1">{airlineName} Airlines</h1>
+              <h1 className="text-3xl font-bold mb-1 mobile-text-sm">{airlineName} Airlines</h1>
               <div className="flex flex-wrap items-center gap-2 text-blue-100">
                 <span className="px-2 py-0.5 bg-white/10 rounded-full text-sm">{positionLabel}</span>
                 <span className="px-2 py-0.5 bg-white/10 rounded-full text-sm">{salaryLevel}</span>
@@ -208,7 +208,7 @@ const Results = () => {
             
             <div className="flex flex-col items-end">
               <div className="text-sm mb-1">Total Monthly Salary</div>
-              <div className="text-3xl font-bold">
+              <div className="text-3xl font-bold mobile-text-sm">
                 <AnimatedCounter 
                   value={grandTotal}
                   formatValue={(val) => formatCurrency(val, 'TRY')}
@@ -224,11 +224,11 @@ const Results = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.5 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-4"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4"
         >
           {/* Base Salary Card */}
           <motion.div 
-            className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-md"
+            className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-md summary-card"
             whileHover={{ y: -5, transition: { duration: 0.2 } }}
           >
             <div className="flex items-start justify-between">
@@ -266,7 +266,7 @@ const Results = () => {
 
           {/* Sector Fees Card */}
           <motion.div 
-            className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-md"
+            className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-md summary-card"
             whileHover={{ y: -5, transition: { duration: 0.2 } }}
           >
             <div className="flex items-start justify-between">
@@ -304,7 +304,7 @@ const Results = () => {
 
           {/* Layover Fees Card */}
           <motion.div 
-            className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-md"
+            className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-md summary-card"
             whileHover={{ y: -5, transition: { duration: 0.2 } }}
           >
             <div className="flex items-start justify-between">
@@ -388,9 +388,9 @@ const Results = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
-          className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-md mb-4 overflow-hidden"
+          className="bg-white dark:bg-gray-800 p-4 mobile-px-2 rounded-xl shadow-md mb-4 overflow-hidden"
         >
-          <div className="flex border-b border-gray-200 dark:border-gray-700 mb-4">
+          <div className="flex flex-wrap border-b border-gray-200 dark:border-gray-700 mb-4 text-sm">
             <button
               className={`px-4 py-2 text-sm font-medium ${activeTab === 'breakdown' ? 'text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400' : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'}`}
               onClick={() => setActiveTab('breakdown')}
@@ -422,10 +422,10 @@ const Results = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
-                className="min-h-[400px] flex flex-col"
+                className="min-h-[300px] flex flex-col responsive-chart"
               >
                 <SafeChartWrapper name="Salary Breakdown Chart">
-                  <Suspense fallback={<div className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg animate-pulse h-[350px]">Loading salary breakdown...</div>}>
+                  <Suspense fallback={<div className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg animate-pulse h-[280px]">Loading salary breakdown...</div>}>
                     <SalaryBreakdown />
                   </Suspense>
                 </SafeChartWrapper>
@@ -437,10 +437,10 @@ const Results = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
-                className="min-h-[400px] flex flex-col"
+                className="min-h-[300px] flex flex-col responsive-chart"
               >
                 <SafeChartWrapper name="Airline Comparison Chart">
-                  <Suspense fallback={<div className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg animate-pulse h-[350px]">Loading airline comparison...</div>}>
+                  <Suspense fallback={<div className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg animate-pulse h-[280px]">Loading airline comparison...</div>}>
                     <AirlineComparison />
                   </Suspense>
                 </SafeChartWrapper>
